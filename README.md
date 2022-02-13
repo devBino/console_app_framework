@@ -102,6 +102,7 @@ public class StartProcesso {
 			AlgoritmProcessor.processar(new Tabuada());
 			
 		}catch(Exception e) {
+			//suas tratativas aqui
 			e.printStackTrace();
 		}
 		
