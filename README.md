@@ -48,7 +48,6 @@ import br.com.consoleapp.framework.annotations.AppConfig;
 import br.com.consoleapp.framework.exception.AlgoritmException;
 
 @AppConfig(
-	processar = true,
 	titulo = "Console App Tabuada Exemplo",
 	mensagens = {
 		"Por favor, informe a tabuada que deseja verificar: "
