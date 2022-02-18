@@ -2,8 +2,8 @@
 
 <p align="justify">
   Autor: Fernando Bino Machado <br><br>
-  O console app framework é um micro framework baseado em Java, em desenvolvimento,
-  que auxilia quando necessitamos fazer testes rápidos, ou mesmo 
+  O console app framework é um micro framework em desenvolvimento, baseado em Java.
+  Seu principal objetivo é auxiliar quando necessitamos fazer testes rápidos, ou mesmo 
   programar um algoritmo com entrada de dados, processamento e saída de dados
   de maneira padronizada.
 </p>
@@ -13,27 +13,52 @@
   Sempre que necessitamos testar um algorítmo e resolver um problema, por mais simples
   que seja, recorremos a criação de um novo projeto, ou uma classe nova em algum lugar
   dentro de um projeto qualquer existente em nosso computador, e de projeto em projeto, 
-  poluimos cada vez mais nosso ambiente de trabalho.
+  poluímos cada vez mais nosso ambiente de trabalho.
 </p>
 <br>
 
 <p align="justify">
-  O console.app.framework fornece um padrão de criação para nossos algoritmos
-  rápidos, onde cada classe padronizada extende à classe AbstractApp do micro framework,
-  onde a classe padronizada representa uma <b>console app</b>. Dessa forma, anotamos
-  as classes criadas com @AppConfig, e nessa anotação, podemos passar alguns valores
-  que irão otimizar a captura dos dados. Dessa maneira só nos preocupamos com
-  a saída dos dados.
+  O console app framework fornece um padrão de criação para nossos algoritmos
+  rápidos, e até mesmo, console applications com opções de menus.
+  Cada classe padronizada representa uma <b>console app</b> e extende à classe AbstractApp do micro framework. 
+  A primeira coisa que precisamos fazer, é anotar a classe recém criada com as possíveis anotações:
+  @AppMenu, @AppParams, @AppFile e @AppTabela.
 </p>
+
+<p align="justify">
+	@AppMenu é a anotação que indica que a classe console app é do tipo menu, onde é possível criar um menu de console application.<br>
+	@AppParams é a anotação que indica que a classe console app é do tipo params, para captura de parâmetros. <br>
+	@AppFile é a anotação que indica que a classe console app é do tipo file, e poderá ler e escrever em arquivos. <br>
+	@AppTabela é a anotação que indica que a classe console app é do tipo tabela, significa que recebera registros e os 
+	exibirá de maneira padronizada. <br>
+</p>
+
+<p align="justify">
+	Após anotar o tipo da console app, anotamos @AppConfig, e nessa anotação, podemos passar alguns valores
+  	referentes às configurações de acordo com tipo escolhido. Por exemplo, se for um menu, é possível passar 
+	em @AppConfig no elemento menu, um Array de Strings com cada opção do menu.
+</p>
+
 <br>
 
 <p align="justify">
-  Mesmo que o micro framework, aparentemente tenha uma proposta trivial, pode ser uma boa
-  ferramenta quando necessitamos padronizar nossos codigos rápidos, de forma que não fiquem 
-  espalhados por todo lugar. Além disso, a construção de algo que possa ser reutilizado,
-  sempre nos força a revisar o código, versioná-lo e se preocupar em quanto ganho uma ferramenta
-  produzida por nós poderá proporcionar.
- </p>
+	O console app framework utiliza padrão singleton para gerenciar as instâncias de console app solicitadas
+	pelos desenvolvedores, mesmo que o desenvolvedor passe sempre novas instâncias de suas console apps,
+	foi implementado um padrão Singleton que garante que cada console app implementada, terá apenas uma 
+	instância.
+</p>
+
+<p align="justify">
+	Além disso o console app framework proporciona uma maneira organizada, profissional e atualizada
+	de criarmos aplicações em console, ou seja, não criamos sem padrão, criamos usando um framework pensado
+	e criado para esse propósito.
+</p>
+
+<p align="justify">
+	Por fim, o console app framework tem novas releases liberadas a cada 15 dias, o que garante que 
+	o sistema considera a evolução constante, pensando em otimizar o desenvolvimento de aplicações em console.
+</p>
+
  <br>
  
  <p align="justify">
