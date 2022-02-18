@@ -41,44 +41,47 @@
  </p>
  
  ```java
-package br.com.meu.pacote;
+package app;
 
 import br.com.consoleapp.framework.abstracts.AbstractApp;
 import br.com.consoleapp.framework.annotations.AppConfig;
+import br.com.consoleapp.framework.annotations.AppParams;
 import br.com.consoleapp.framework.exception.AlgoritmException;
 
+@AppParams
 @AppConfig(
-	titulo = "Console App Tabuada Exemplo",
-	mensagens = {
-		"Por favor, informe a tabuada que deseja verificar: "
-	},
-	tipos = {
-		"INTEGER"
-	}
+   titulo = "CONSOLE APP TABUADA EXEMPLO",
+   mensagens = {
+   	"Por favor, informe a tabuada que deseja verificar: "
+   },
+   tipos = {
+   	"INTEGER"
+   }
 )
 public class Tabuada extends AbstractApp {
 
-	@Override
-	public void processar() throws AlgoritmException {
-		
-		//entrada de dados
-		super.entradaDados();
-		
-		//processamento de dados
-		StringBuilder saida = new StringBuilder();
-		
-		for(int i=1; i<=10; i++) {
-			Integer n = (Integer) super.getParams().get(0);
-			int r = i * n;
-			saida.append(String.format("%d X %d = %d%n", i,n,r));
-		}
-		
-		//saída de dados
-		super.saidaDados(saida);
-		
-	}
-	
+   @Override
+   public void processar() throws AlgoritmException {
+   	
+   	//entrada de dados
+   	super.entradaDados();
+   	
+   	//processamento de dados
+   	StringBuilder saida = new StringBuilder();
+   	
+   	for(int i=1; i<=10; i++) {
+   		Integer n = (Integer) super.getParams().get(0);
+   		int r = i * n;
+   		saida.append(String.format("%d X %d = %d%n", i,n,r));
+   	}
+   	
+   	//saída de dados
+   	super.saidaDados(saida);
+   	
+   }
+   
 }
+
 
  ```
  
@@ -88,26 +91,27 @@ public class Tabuada extends AbstractApp {
 
 ```java
 
-package br.com.meu.pacote;
+package app;
 
 import br.com.consoleapp.framework.processor.AlgoritmProcessor;
 
-public class StartProcesso {
+public class Start {
 
-	public void exemploChamada() {
-		
+	public static void main(String[] args) {
 		try {
 			
 			AlgoritmProcessor.processar(new Tabuada());
 			
 		}catch(Exception e) {
-			//suas tratativas aqui
-			e.printStackTrace();
+			//suas tratativas aqui, erro capturado pelo framework
+			System.out.println( String.format("ERRO DE EXECUÇÃO: %s", e.getMessage()) );
+			
 		}
-		
+
 	}
-	
+
 }
+
 
 ```
 
