@@ -61,7 +61,7 @@ import br.com.consoleapp.framework.exception.AlgoritmException;
 public class Tabuada extends AbstractApp {
 
    @Override
-   public void processar() throws AlgoritmException {
+   public void processar() throws AlgoritmException, BusinessException  {
    	
    	//entrada de dados
    	super.entradaDados();
