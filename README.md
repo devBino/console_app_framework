@@ -159,7 +159,7 @@ public class Start {
   configurar o tipo.
  </p>
 
-<h2>1 - Crie uma console app anotada com @AppMenu e @AppConfig, que será a console app de Menu</h2><br>
+<h2>Crie uma console app anotada com @AppMenu e @AppConfig, que será a console app de Menu</h2><br>
 	
 ```java
 package app;
