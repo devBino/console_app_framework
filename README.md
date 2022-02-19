@@ -235,15 +235,15 @@ import br.com.consoleapp.framework.processor.AlgoritmProcessor;
 
 @AppParams
 @AppConfig(
-		titulo = "Capturando dados para SOMA",
-		mensagens = {
-				"Por favor informe o valor 1: ",
-				"Por favor informe o valor 2: "
-		},
-		tipos = {
-				"big_decimal",
-				"big_decimal"
-		}
+	titulo = "Capturando dados para SOMA",
+	mensagens = {
+			"Por favor informe o valor 1: ",
+			"Por favor informe o valor 2: "
+	},
+	tipos = {
+			"big_decimal",
+			"big_decimal"
+	}
 )
 public class Somar extends AbstractApp {
 
@@ -289,15 +289,15 @@ import br.com.consoleapp.framework.processor.AlgoritmProcessor;
 
 @AppParams
 @AppConfig(
-		titulo = "Capturando dados para DIMINUIR",
-		mensagens = {
-				"Por favor informe o valor 1: ",
-				"Por favor informe o valor 2: "
-		},
-		tipos = {
-				"big_decimal",
-				"big_decimal"
-		}
+	titulo = "Capturando dados para DIMINUIR",
+	mensagens = {
+			"Por favor informe o valor 1: ",
+			"Por favor informe o valor 2: "
+	},
+	tipos = {
+			"big_decimal",
+			"big_decimal"
+	}
 )
 public class Diminuir extends AbstractApp {
 
@@ -344,15 +344,15 @@ import br.com.consoleapp.framework.processor.AlgoritmProcessor;
 
 @AppParams
 @AppConfig(
-		titulo = "Capturando dados para MULTIPLICAR",
-		mensagens = {
-				"Por favor informe o valor 1: ",
-				"Por favor informe o valor 2: "
-		},
-		tipos = {
-				"big_decimal",
-				"big_decimal"
-		}
+	titulo = "Capturando dados para MULTIPLICAR",
+	mensagens = {
+			"Por favor informe o valor 1: ",
+			"Por favor informe o valor 2: "
+	},
+	tipos = {
+			"big_decimal",
+			"big_decimal"
+	}
 )
 public class Multiplicar extends AbstractApp {
 
@@ -400,15 +400,15 @@ import br.com.consoleapp.framework.processor.AlgoritmProcessor;
 
 @AppParams
 @AppConfig(
-		titulo = "Capturando dados para DIVIDIR",
-		mensagens = {
-				"Por favor informe o valor 1: ",
-				"Por favor informe o valor 2: "
-		},
-		tipos = {
-				"big_decimal",
-				"big_decimal"
-		}
+	titulo = "Capturando dados para DIVIDIR",
+	mensagens = {
+			"Por favor informe o valor 1: ",
+			"Por favor informe o valor 2: "
+	},
+	tipos = {
+			"big_decimal",
+			"big_decimal"
+	}
 )
 public class Dividir extends AbstractApp {
 
