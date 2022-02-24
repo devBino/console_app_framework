@@ -76,46 +76,49 @@
  </p>
  
  ```java
-package app;
+package br.com.calculadora;
 
 import br.com.consoleapp.framework.abstracts.AbstractApp;
 import br.com.consoleapp.framework.annotations.AppConfig;
 import br.com.consoleapp.framework.annotations.AppParams;
 import br.com.consoleapp.framework.exception.AlgoritmException;
+import br.com.consoleapp.framework.exception.BusinessException;
 
 @AppParams
 @AppConfig(
-   titulo = "CONSOLE APP TABUADA EXEMPLO",
-   mensagens = {
-   	"Por favor, informe a tabuada que deseja verificar: "
-   },
-   tipos = {
-   	"INTEGER"
-   }
+  titulo = "CONSOLE APP TABUADA EXEMPLO",
+  mensagens = {
+  	"Por favor, informe a tabuada que deseja exibir: "
+  },
+  tipos = {
+  	"INTEGER"
+  }
 )
 public class Tabuada extends AbstractApp {
 
-   @Override
-   public void processar() throws AlgoritmException, BusinessException  {
-   	
-   	//entrada de dados
-   	super.entradaDados();
-   	
-   	//processamento de dados
-   	StringBuilder saida = new StringBuilder();
-   	
-   	for(int i=1; i<=10; i++) {
-   		Integer n = (Integer) params.get(0);
-   		int r = i * n;
-   		saida.append(String.format("%d X %d = %d%n", i,n,r));
-   	}
-   	
-   	//saída de dados
-   	super.saidaDados(saida);
-   	
-   }
-   
+  @Override
+  public void processar() throws AlgoritmException, BusinessException  {
+  	
+  	//entrada de dados
+  	super.entradaDados();
+  	
+  	//processamento de dados
+  	StringBuilder saida = new StringBuilder();
+  	
+  	for(int i=1; i<=10; i++) {
+  		Integer n = (Integer) params.get(0)[0];
+  		int r = i * n;
+  		saida.append(String.format("%d X %d = %d%n", i,n,r));
+  	}
+  	
+  	//saída de dados
+  	super.saidaDados(saida);
+  	
+  }
+  
 }
+
+
 
 
  ```
@@ -126,7 +129,8 @@ public class Tabuada extends AbstractApp {
 
 ```java
 
-package app;
+
+package br.com.calculadora;
 
 import br.com.consoleapp.framework.processor.AlgoritmProcessor;
 
@@ -148,328 +152,6 @@ public class Start {
 }
 
 
-```
 
-<br>
-
-<p align="justify">
-  <h1>Agora, uma aplicação de menu combinando os tipos de console app @AppMenu e @AppParams</h1><br>
-
-  Lembre-se que além da anotação de tipo de console app, devemos passar anotação @AppConfig, para
-  configurar o tipo.
- </p>
-
-<h2>Crie uma console app anotada com @AppMenu e @AppConfig, que será a console app de Menu</h2><br>
-	
-```java
-package app;
-
-import br.com.consoleapp.framework.abstracts.AbstractApp;
-import br.com.consoleapp.framework.annotations.AppConfig;
-import br.com.consoleapp.framework.annotations.AppMenu;
-import br.com.consoleapp.framework.exception.AlgoritmException;
-import br.com.consoleapp.framework.exception.BusinessException;
-import br.com.consoleapp.framework.processor.AlgoritmProcessor;
-
-@AppMenu
-@AppConfig(
-	titulo = "TESTE CONCEITO CALCULADORA",
-	menu = {
-		"[1] - Somar",
-		"[2] - Diminuir",
-		"[3] - Multiplicar",
-		"[4] - Dividir",
-		"[5] - Encerrar"
-	}
-)
-public class Menu extends AbstractApp {
-
-	@Override
-	public void processar() throws AlgoritmException, BusinessException {
-
-		super.entradaDados();
-		
-		if( params.get(0).equals("1") ) {
-			
-			AlgoritmProcessor.processar(new Somar());
-			
-		}else if( params.get(0).equals("2") ) {
-			
-			AlgoritmProcessor.processar(new Diminuir());
-			
-		}else if( params.get(0).equals("3") ) {
-			
-			AlgoritmProcessor.processar(new Multiplicar());
-			
-		}else if( params.get(0).equals("4") ) {
-			
-			AlgoritmProcessor.processar(new Dividir());
-			
-		}else {
-			
-			System.out.println("\nEncerrando Console App...");
-			System.exit(0);
-			
-		}
-		
-	}
-	
-}
 
 ```
-
-<h2>Crie uma console app anotada com @AppParams e @AppConfig para ser a opção de SOMA</h2><br>
-
-
-```java
-package app;
-
-import java.math.BigDecimal;
-
-import br.com.consoleapp.framework.abstracts.AbstractApp;
-import br.com.consoleapp.framework.annotations.AppConfig;
-import br.com.consoleapp.framework.annotations.AppParams;
-import br.com.consoleapp.framework.exception.AlgoritmException;
-import br.com.consoleapp.framework.exception.BusinessException;
-import br.com.consoleapp.framework.processor.AlgoritmProcessor;
-
-@AppParams
-@AppConfig(
-	titulo = "Capturando dados para SOMA",
-	mensagens = {
-			"Por favor informe o valor 1: ",
-			"Por favor informe o valor 2: "
-	},
-	tipos = {
-			"big_decimal",
-			"big_decimal"
-	}
-)
-public class Somar extends AbstractApp {
-
-	@Override
-	public void processar() throws AlgoritmException, BusinessException {
-		
-		super.entradaDados();
-		
-		//processa os dados
-		BigDecimal valor1 = new BigDecimal(params.get(0).toString());
-		BigDecimal valor2 = new BigDecimal(params.get(1).toString());
-		BigDecimal resultado = valor1.add(valor2);
-		
-		//monta mensagem saida
-		StringBuilder saida = new StringBuilder();
-		saida.append("Resultado cálculo: ");
-		saida.append(resultado.toString());
-		
-		super.saidaDados(saida);
-		
-		AlgoritmProcessor.processar(new Menu());
-		
-		
-	}
-	
-}
-
-```
-
-<h2>Crie uma console app anotada com @AppParams e @AppConfig para ser a opção de DIMINUIR</h2><br>
-
-```java
-package app;
-
-import java.math.BigDecimal;
-
-import br.com.consoleapp.framework.abstracts.AbstractApp;
-import br.com.consoleapp.framework.annotations.AppConfig;
-import br.com.consoleapp.framework.annotations.AppParams;
-import br.com.consoleapp.framework.exception.AlgoritmException;
-import br.com.consoleapp.framework.exception.BusinessException;
-import br.com.consoleapp.framework.processor.AlgoritmProcessor;
-
-@AppParams
-@AppConfig(
-	titulo = "Capturando dados para DIMINUIR",
-	mensagens = {
-			"Por favor informe o valor 1: ",
-			"Por favor informe o valor 2: "
-	},
-	tipos = {
-			"big_decimal",
-			"big_decimal"
-	}
-)
-public class Diminuir extends AbstractApp {
-
-	@Override
-	public void processar() throws AlgoritmException, BusinessException {
-		
-		super.entradaDados();
-		
-		//processa os dados
-		BigDecimal valor1 = new BigDecimal(params.get(0).toString());
-		BigDecimal valor2 = new BigDecimal(params.get(1).toString());
-		BigDecimal resultado = valor1.subtract(valor2);
-		
-		//monta mensagem saida
-		StringBuilder saida = new StringBuilder();
-		saida.append("Resultado cálculo: ");
-		saida.append(resultado.toString());
-		
-		super.saidaDados(saida);
-		
-		AlgoritmProcessor.processar(new Menu());
-		
-		
-	}
-	
-}
-
-```
-
-<h2>Crie uma console app anotada com @AppParams e @AppConfig para ser a opção de MULTIPLICAR</h2><br>
-
-
-```java
-package app;
-
-import java.math.BigDecimal;
-
-import br.com.consoleapp.framework.abstracts.AbstractApp;
-import br.com.consoleapp.framework.annotations.AppConfig;
-import br.com.consoleapp.framework.annotations.AppParams;
-import br.com.consoleapp.framework.exception.AlgoritmException;
-import br.com.consoleapp.framework.exception.BusinessException;
-import br.com.consoleapp.framework.processor.AlgoritmProcessor;
-
-@AppParams
-@AppConfig(
-	titulo = "Capturando dados para MULTIPLICAR",
-	mensagens = {
-			"Por favor informe o valor 1: ",
-			"Por favor informe o valor 2: "
-	},
-	tipos = {
-			"big_decimal",
-			"big_decimal"
-	}
-)
-public class Multiplicar extends AbstractApp {
-
-	@Override
-	public void processar() throws AlgoritmException, BusinessException {
-		
-		super.entradaDados();
-		
-		//processa os dados
-		BigDecimal valor1 = new BigDecimal(params.get(0).toString());
-		BigDecimal valor2 = new BigDecimal(params.get(1).toString());
-		BigDecimal resultado = valor1.multiply(valor2);
-		
-		//monta mensagem saida
-		StringBuilder saida = new StringBuilder();
-		saida.append("Resultado cálculo: ");
-		saida.append(resultado.toString());
-		
-		super.saidaDados(saida);
-		
-		AlgoritmProcessor.processar(new Menu());
-		
-		
-	}
-	
-}
-
-```
-
-<h2>Crie uma console app anotada com @AppParams e @AppConfig para ser a opção de DIVIDIR</h2><br>
-
-
-```java
-package app;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
-import br.com.consoleapp.framework.abstracts.AbstractApp;
-import br.com.consoleapp.framework.annotations.AppConfig;
-import br.com.consoleapp.framework.annotations.AppParams;
-import br.com.consoleapp.framework.exception.AlgoritmException;
-import br.com.consoleapp.framework.exception.BusinessException;
-import br.com.consoleapp.framework.processor.AlgoritmProcessor;
-
-@AppParams
-@AppConfig(
-	titulo = "Capturando dados para DIVIDIR",
-	mensagens = {
-			"Por favor informe o valor 1: ",
-			"Por favor informe o valor 2: "
-	},
-	tipos = {
-			"big_decimal",
-			"big_decimal"
-	}
-)
-public class Dividir extends AbstractApp {
-
-	@Override
-	public void processar() throws AlgoritmException, BusinessException {
-		
-		super.entradaDados();
-		
-		//processa os dados
-		BigDecimal valor1 = new BigDecimal(params.get(0).toString());
-		BigDecimal valor2 = new BigDecimal(params.get(1).toString());
-		BigDecimal resultado = new BigDecimal("0.00");
-		
-		if( valor1.compareTo(new BigDecimal("0.00")) > 0 
-				&& valor2.compareTo(new BigDecimal("0.00")) > 0 ) {
-			
-			resultado = valor1.divide(valor2,RoundingMode.HALF_DOWN);
-			
-		}
-		
-		//monta mensagem saida
-		StringBuilder saida = new StringBuilder();
-		saida.append("Resultado cálculo: ");
-		saida.append(resultado.toString());
-		
-		super.saidaDados(saida);
-		
-		AlgoritmProcessor.processar(new Menu());
-		
-		
-	}
-	
-}
-
-```
-
-<h2>Crie a classe principal da sua aplicação Java, para chamar a primeira console app menu, que poderá chamar as demais</h2><br>
-
-```java
-package app;
-
-import br.com.consoleapp.framework.processor.AlgoritmProcessor;
-
-public class Start {
-
-	public static void main(String[] args) {
-		try {
-			
-			AlgoritmProcessor.processar(new Menu());
-			
-		}catch(Exception e) {
-			//suas tratativas aqui, erro capturado pelo framework
-			System.out.println( String.format("ERRO DE EXECUÇÃO: %s", e.getMessage()) );
-			
-		}
-
-	}
-
-}
-
-```
-	
-	
-
